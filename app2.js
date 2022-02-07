@@ -30,6 +30,11 @@ app.post('/v1/auth', (req, res) => {
     }
 })
 
+app.get('/v1/greetings', function(req, res) {
+
+    res.send('hello');
+});
+
 app.get('/data/2.5/weather', get_weather)
 
 function get_weather(request, response) {
