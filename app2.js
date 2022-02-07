@@ -23,7 +23,7 @@ app.post('/v1/auth', (req, res) => {
     if (username == "nagireddy" && password == "12345") {
         token = {
             "jwt": key,
-            //"expires": expiry 
+            "expires": "2022-01-11T22:18:26.625Z"
         }
         res.json(token)
 
@@ -31,12 +31,30 @@ app.post('/v1/auth', (req, res) => {
 })
 
 app.get('/v1/hello', function(req, res) {
-
-    res.send('hello');
+    if (req.query.token == key) {
+        res.send('hello');
+    } else {
+        res.send('error 403: token not found')
+    }
 });
 
 app.get('/data/2.5/weather', get_weather)
 
 function get_weather(request, response) {
-    response.json({ "coord": { "lon": -123.262, "lat": 44.5646 }, "weather": [{ "id": 701, "main": "Mist", "description": "mist", "icon": "50n" }], "base": "stations", "main": { "temp": 276.61, "feels_like": 275.29, "temp_min": 275.36, "temp_max": 279.95, "pressure": 1019, "humidity": 80 }, "visibility": 6437, "wind": { "speed": 1.54, "deg": 140 }, "clouds": { "all": 100 }, "dt": 1642392459, "sys": { "type": 2, "id": 2040223, "country": "US", "sunrise": 1642347934, "sunset": 1642381185 }, "timezone": -28800, "id": 5720727, "name": "Corvallis", "cod": 200 })
+    if (request.query.token == key) {
+        response.json({ "coord": { "lon": -123.262, "lat": 44.5646 }, "weather": [{ "id": 701, "main": "Mist", "description": "mist", "icon": "50n" }], "base": "stations", "main": { "temp": 276.61, "feels_like": 275.29, "temp_min": 275.36, "temp_max": 279.95, "pressure": 1019, "humidity": 80 }, "visibility": 6437, "wind": { "speed": 1.54, "deg": 140 }, "clouds": { "all": 100 }, "dt": 1642392459, "sys": { "type": 2, "id": 2040223, "country": "US", "sunrise": 1642347934, "sunset": 1642381185 }, "timezone": -28800, "id": 5720727, "name": "Corvallis", "cod": 200 })
+
+    } else {
+        res.send('error 403: token not found')
+    }
+}
+app.get('/v1/weather', get_weather_v1)
+
+function get_weather_v1(request, response) {
+    if (request.query.token == key) {
+        response.json({ "coord": { "lon": -123.262, "lat": 44.5646 }, "weather": [{ "id": 701, "main": "Mist", "description": "mist", "icon": "50n" }], "base": "stations", "main": { "temp": 276.61, "feels_like": 275.29, "temp_min": 275.36, "temp_max": 279.95, "pressure": 1019, "humidity": 80 }, "visibility": 6437, "wind": { "speed": 1.54, "deg": 140 }, "clouds": { "all": 100 }, "dt": 1642392459, "sys": { "type": 2, "id": 2040223, "country": "US", "sunrise": 1642347934, "sunset": 1642381185 }, "timezone": -28800, "id": 5720727, "name": "Corvallis", "cod": 200 })
+
+    } else {
+        res.send('error 403: token not found')
+    }
 }
