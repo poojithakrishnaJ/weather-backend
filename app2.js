@@ -30,7 +30,7 @@ app.post('/v1/auth', (req, res) => {
     }
 })
 
-app.get('/v1/greetings', function(req, res) {
+app.get('/v1/hello', function(req, res) {
 
     res.send('hello');
 });
