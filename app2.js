@@ -7,7 +7,7 @@ console.log('Node.js Express server is running on port 3000...')
 
 
 
-const key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5hZ2lyZWRkeSIsInBhc3N3b3JkIjoiMTIzNDUiLCJpYXQiOjE1MTYyMzkwMjJ9.UX5dVriKZ155iIWEQSW6dxTjEfKSl2WPCg-hMg2srUg"
+const key = "jwt token"
 
 
 var bodyParser = require('body-parser');
